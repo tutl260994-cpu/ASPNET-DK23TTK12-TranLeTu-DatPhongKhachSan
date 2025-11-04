@@ -1,0 +1,78 @@
+﻿@model IEnumerable<HotelBooking.Models.TblKhachSan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<head>
+    <link rel="stylesheet" href="/css/Datphong/styles.css" />
+    <script src="~/js/luuform.js"></script>
+</head>
+    
+<div class="box">
+
+    <form id="formtimkiem" asp-controller="TblDatphongs" method="get" asp-action="Index">
+        <div class="search-bar">
+            <div class="label-an"><input type="text" class="diadiem" name="address" placeholder="Bạn muốn đi đâu"></input></div>
+            <div class="label-an"><input type="date" class="ngaycheckin" name="nhanphong" placeholder="Ngày check-in"></div>
+            <div class="label-an"><input type="date" class="ngaycheckout" name="traphong" placeholder="Ngày check-out"></div>
+            <div class="label-an"><input type="number" class="songuoi" name="number"  placeholder="Số người"></div>
+            <div class="timkiem"><button type="submit" class="btn-timkiem">Tìm Kiếm</button></div>
+        </div>
+        </form>
+        
+    <div class="container2">
+        <div class="column1">
+                <h3>Những thiết yếu cần có</h3>
+                <hr style="border-top: 2px solid #000;">
+
+                <div>
+                    <p><b>Xếp hạng chỗ nghỉ</b></p>
+
+                <form id="formsao" method="get" asp-controller="TblDatphongs" asp-action="Index">
+                        <input type="radio" class="star5" name="rating" value="5"> 5 sao<br>
+                        <input type="radio" class="star4" name="rating" value="4"> 4 sao<br>
+                        <input type="radio" class="star3" name="rating" value="3"> 3 sao<br>
+                        <input type="radio" class="star2" name="rating" value="2"> 2 sao<br>
+                        <input type="radio" class="star1" name="rating" value="1"> 1 sao<br>
+                        <hr style="border-top: 2px solid #000;">
+                        <input class="btn-locsao" type="submit" value="Lọc"/>
+                    </form>
+                </div>
+            </div>
+        <div class="column2">
+            <div>
+                <h3>Kết quả tìm kiếm:</h3>
+                    <hr style="border-top: 2px solid #000;">
+            </div>
+            <div id="danhsachksan">
+                @foreach (var item in Model)
+                {
+                    <div class="product">
+                        <div class="img-anhks">
+                            <a asp-area="" asp-controller="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan"><img class="image-khachsan" src="~/img/image-9.png" /></a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                        </div>
+                        <div class="thongtin-khachsan">
+                            <div class="tenkhachsan"><h5>@Html.DisplayFor(modelItem => item.STenkhachsan)</h5></div>
+                            <p style="font-size:70%">Đánh giá: @Html.DisplayFor(modelItem => item.SDanhgia)</p>
+                            <hr style="border-top: 1px solid #000;width:400px">
+                            <div class="diachi" style="font-size:80%"><h7>@Html.DisplayFor(modelItem => item.SDiachi)</h7></div>
+                            <div class="mota">
+                                <p style="font-size=70%">@Html.DisplayFor(modelItem => item.SMotakhachsan)</p>
+                            </div>
+                            <div class="nut">
+                            <a asp- asp-controller="" asp-action="Details" asp-route-id="@item.IdKhachsan">
+                                <button class="btn-luuphong">Lưu</button>
+                            </a>
+                            <a asp-controller ="Chitietphong" asp-action="Index" asp-route-id="@item.IdKhachsan">
+                            <button class="btn-datphong">Xem</button>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr style="border-top: 2px solid #000;">
+
+                }
+            </div>
+            </div>
+        </div>
+    </div>

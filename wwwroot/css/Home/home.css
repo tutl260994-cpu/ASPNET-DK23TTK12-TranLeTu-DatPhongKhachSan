@@ -1,0 +1,150 @@
+﻿.content{
+    background-color:white;
+    margin-top:10px;
+    display:block;
+    margin-bottom:10px;
+}
+
+.clear {
+    clear: both;
+}
+    .content .Home_banner {
+        display: flex;
+        width: auto;
+        height: auto;
+        /*background-image: url(/img/image-2.png);*/
+        justify-content: center;
+        align-content: center;
+        /*background-size: cover;*/ /* Hiển thị ảnh nền theo tỷ lệ và che đè toàn bộ phần tử */
+        /*background-position: center;*/ /* Căn giữa ảnh nền */
+        /*min-height: 100vh;*/ /* Thiết lập độ cao tối thiểu bằng chiều cao của viewport */
+    }
+        .content .Home_banner img {
+            width: 100%; /* Đảm bảo ảnh nền kích thước 100% chiều rộng của .Home_banner */
+        }
+        .content .Home_banner .timkiem {
+            /* display: flex;
+            margin: auto;*/
+            position: absolute; /* Đặt vị trí tuyệt đối cho .timkiem */
+            top: 270px; /* Đặt phía trên giữa */
+            left: 50%; /* Đặt phía trái giữa */
+            transform: translate(-50%, -50%); /* Dịch chuyển về trung tâm */
+
+            border-radius: 10px; /* Bo góc cho .timkiem */
+            display: flex; /* Sử dụng display flex để xếp sát nhau */
+            align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+        }
+            .content .Home_banner .timkiem:hover {
+                border:1px solid #e1e1e1;
+            }
+            .content .Home_banner .timkiem input {
+                border: 0px;
+                background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
+            }
+            .content .Home_banner .timkiem button {
+                background-color: rgba(255, 255, 255, 0.6); /* Nền mờ để nội dung đọc được */
+            }
+
+
+.content .Home_thinhhanh {
+    display: block;
+}
+
+    .content .Home_thinhhanh .diemdendangthinhhanh {
+        display: block;
+    }
+.Home_thinhhanh_content {
+    display: flex;
+    width: 100%;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    padding: 0px 20px 0px 0px;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    width: 34%;
+    padding:0px 0px 0px 20px;
+}
+
+.left_content,
+.right_content {
+    padding: 0px 0px 40px 0px;
+    position: relative;
+}
+    .left_content img:hover,
+    .right_content img:hover {
+        filter: brightness(1.2); /* Giá trị > 1 làm cho ảnh sáng hơn */
+    }
+
+    .left_content img,
+    .right_content img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+.text-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    color:black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
+
+
+.Home_hanoi {
+    margin-top: 30px;
+    display: block;
+}
+
+.Home_HCM {
+    margin-top: 30px;
+    display: block;
+}
+.noidung {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.khachsan {
+    width: 25%;
+    margin: 0;
+    display: block;
+    align-content: center;
+    padding: 10px;
+    float: left;    
+}
+    .khachsan:hover {
+        padding:0px 5px 0px 5px;
+    }
+.khachsan_content {
+    border: 1px solid;
+    padding: 5px;
+}
+    .khachsan_content .anh {
+        width: 100%;
+        min-height: 280px;
+        overflow: hidden;
+    }
+        .khachsan_content .anh img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    .khachsan_content button {
+        width: 100%;
+    }
+        
+
+
+            

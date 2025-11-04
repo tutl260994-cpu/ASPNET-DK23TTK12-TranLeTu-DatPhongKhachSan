@@ -1,0 +1,119 @@
+﻿@model IEnumerable<HotelBooking.Models.TblPhong>
+@{
+    ViewData["Title"] = "Chi tiết phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <link href="/css/Chithietphong/chitietphong.css" rel="stylesheet">
+</head>
+<div class="content">
+    <div class="Header_chitiet">
+        <span class="name_khachsan">
+            @ViewBag.tenks
+        </span>
+    </div>
+    <div class="Body_chitiet">
+        <div class="Imgreview_phong">
+            <img src="/img/image-4.png" />
+        </div>
+        <div class="gioithieu_phong">
+            <div class="tiennghi_phong">
+                @foreach (var item in Model.SelectMany(p => p.STiennghi.Split(',').Select(t => t.Trim())).Distinct())
+                {
+                    <div class="tiennghi_item">
+                        @item
+                    </div>
+                }
+            </div>
+
+            <span class="mota_phong">
+                @ViewBag.mota
+            </span>
+        </div>
+    </div>
+    <div class="timkiem">
+            <form asp-controller="TblDatphongs" asp-action="Index">
+                <input type="text" class="timkiem_input" id="timkiem_diachi" name="address" placeholder="Bạn muốn đến đâu" />
+                <input type="date" class="timkiem_input" id="timkiem_date_nhan" name="nhanphong" placeholder="Ngày nhận">
+                <input type="date" class="timkiem_input" id="timkiem_date_tra" name="traphong" placeholder="Ngày tra">
+                <input type="number" class="timkiem_input" id="timkiem_number" name="number" placeholder="Số Người" />
+                <button type="submit" class="btn-timkiem">Tìm Kiếm</button> 
+        </form>
+        </div>
+
+    <div class="footer_chitiet">
+        <div class="column1">
+            <h2>Lọc dữ liệu</h2>
+            <hr style="border-top: 2px solid #000;">
+
+            <form asp-action="Index" method="get" asp-controller="Chitietphong" >
+            <div class="Kieuphong_filter">
+                <p><b>Kiểu phòng</b></p>
+                    <!-- Các ô input cho lọc -->
+                    <div class="danhsachfilter">
+                        @foreach (var item in Model.Select(i => i.SKieuPhong).Distinct())
+                        {
+                            <input type="checkbox" class="input_loc" name="kieuphong" value="@item" >
+                            @item
+                            <br />
+                        }
+                    </div>
+
+            </div>
+
+            <div class="Tiennghi_filter">
+                <p><b>Kiểu phòng</b></p>
+                    <!-- Các ô input cho lọc -->
+                    <div class="danhsachfilter">
+                        @foreach (var item in Model.SelectMany(p => p.STiennghi.Split(',').Select(t => t.Trim())).Distinct())
+                        {
+                            <input type="checkbox" class="input_loc" name="tiennghi" value="@item" @(ViewBag.tiennghi == item ? "checked" : "")>
+                            @item
+                            <br />
+                        }
+                    </div>
+                </div>
+                <input type="submit" name="loc" id="btn_loc" value="Lọc" />
+            </form>
+
+        </div>
+        <div class="column2">
+            <h2 class="Loc_title">@ViewBag.kieu</h2>
+            @foreach (var item in Model)
+            {
+                    <div class="phong_daloc">
+                        <div class="phong_content">
+
+                            <div class="left_content">
+                                <div class="anh">
+                                    <a asp-action="Details" asp-route-id="@item.IdPhong">
+                                        <img class="phong_image" src="~/img/image-9.png" />
+                                    </a>@* @Html.DisplayFor(modelItem => item.SAnhkhachsan) *@
+                            </div>
+                            <div class="content_left_phong">
+                                <div class="kieuphong_phongloc">
+                                    Kiểu phòng: @Html.DisplayFor(modelItem => item.SKieuPhong)
+                                </div>
+                                <div class="tiennghi_phongloc">
+                                    Tiện ích: @Html.DisplayFor(modelItem => item.STiennghi)
+                                </div>
+                                <div class="mota_phongloc">
+                                    Đánh Giá: @Html.DisplayFor(modelItem => item.SMotaphong)
+                                </div>
+                            </div>
+                            </div>
+                            <div class="right_content">
+                                <div class="datphong">
+                                    <a asp-controller="Chitietphong" asp-action="Details" asp-route-id="@item.IdPhong"><button type="button">Đặt phòng ngay</button></a>
+                                </div>
+
+                                <div class="giaphong_phongloc">
+                                    @Html.DisplayFor(modelItem => item.FGiaphong)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            }
+        </div>
+  </div>
+  </div>
